@@ -1,0 +1,66 @@
+{
+  "report_metadata": {
+    "title": "AWS IAM Security Audit Report",
+    "author": "Goutham Reddy Kambalapally",
+    "generated": "2026-06-04T20:16:33Z",
+    "tool": "aws_iam_security_auditor.py",
+    "framework": "NIST CSF, CIS AWS Foundations Benchmark"
+  },
+  "summary": {
+    "total_findings": 8,
+    "critical": 2,
+    "high": 3,
+    "medium": 2,
+    "info": 1
+  },
+  "findings": {
+    "CRITICAL": [
+      {
+        "check": "Root Access Key Exists",
+        "resource": "root",
+        "detail": "The root account has active access keys. These should be removed immediately."
+      },
+      {
+        "check": "AdministratorAccess Attached",
+        "resource": "jsmith",
+        "detail": "User 'jsmith' has AdministratorAccess directly attached. Follow least-privilege principles and use role-based access."
+      }
+    ],
+    "HIGH": [
+      {
+        "check": "MFA Not Enabled",
+        "resource": "jsmith",
+        "detail": "User 'jsmith' has no MFA device configured."
+      },
+      {
+        "check": "MFA Not Enabled",
+        "resource": "svc_deploy",
+        "detail": "User 'svc_deploy' has no MFA device configured."
+      },
+      {
+        "check": "Stale Access Key",
+        "resource": "svc_deploy",
+        "detail": "Access key AKIAIOSFODNN7EXAMPLE for 'svc_deploy' is 124 days old (threshold: 90 days). Rotate immediately."
+      }
+    ],
+    "MEDIUM": [
+      {
+        "check": "Weak Password Policy",
+        "resource": "account",
+        "detail": "Password policy does not meet best practices: Minimum password length < 14 characters; Password expiration not enabled."
+      },
+      {
+        "check": "Inactive User",
+        "resource": "contractor_old",
+        "detail": "User 'contractor_old' has not logged in for 147 days. Consider disabling or removing this account."
+      }
+    ],
+    "INFO": [
+      {
+        "check": "Root Access Key Exists",
+        "resource": "root",
+        "detail": "Demo note: root key check executed successfully."
+      }
+    ]
+  }
+}
